@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function myClick(){
+            var label1=document.getElementById("myInput").value;
+            var display1=document.getElementById("myDisplay");
+            display1.innerHTML=label1;
+
+        }
+
+    </script>
+</head>
+<body>
+    <label>请输入北京今天的空气质量：
+        <input id="myInput" type="text"></label>
+    <button id="button" onclick="myClick()">确认填写</button>
+    <div>您输入的值是：<span id="myDisplay">尚无录入</span></div>
+
+
+</body>
+</html>

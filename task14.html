@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        var polluteData=[
+            ["北京",90], ["上海",50], ["福州",10], ["广州",70], ["深圳",80]
+        ];
+        //二维数组利用sort函数排序的方法，以第二列作为排序标准
+        polluteData.sort(function(x,y){
+            return y[1]-x[1];
+        });
+
+        function initial(){
+            //获取页面上的ul，满足要求的条件下，向ul附加孩子li
+            var oul=document.getElementById("polluteList");
+            for(var i=0;i<polluteData.length;i++) {
+                var row = polluteData[i];
+                if (polluteData[i][1] >= 60) {
+                    //满足条件了，则创建li节点、li节点赋值、li附加到ul上
+                    var oli=document.createElement('li');
+                    var k=i+1;
+                    for (var j = 0; j < row.length; j++) {
+                        if(j==0){
+                            oli.innerHTML += "第"+k+"名："+row[j];
+                        }
+                        else{
+                            oli.innerHTML += row[j];
+                        }
+
+
+                    }
+//                    alert(oli.innerHTML);
+                    oul.appendChild(oli);
+
+                }
+
+            }
+        }
+    </script>
+</head>
+<body onload="initial()">
+<h3>污染城市列表</h3>
+<ul id="polluteList">
+
+</ul>
+
+</body>
+</html>

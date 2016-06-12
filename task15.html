@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="source">
+    <li>北京空气质量：<b>90</b></li>
+    <li>上海空气质量：<b>70</b></li>
+    <li>天津空气质量：<b>90</b></li>
+    <li>广州空气质量：<b>50</b></li>
+    <li>深圳空气质量：<b>60</b></li>
+    <li>福州空气质量：<b>32</b></li>
+    <li>成都空气质量：<b>100</b></li>
+</ul>
+<br/>
+<ul id="resort">
+</ul>
+
+<button id="sort-btn" onclick="sort()">排序</button>
+
+<script type="text/javascript">
+    function sort() {
+        var arrLi;
+        var i;
+        var j;
+        var arrB;
+        var data = [];
+        var oLis = document.getElementById("source").getElementsByTagName("li");
+        var oBs=document.getElementsByTagName("b");
+
+        for (i = 0; i < oLis.length; i++) {
+            data[i] = [];
+            arrLi = oLis[i].innerHTML.match(/(.*?空气)/)[1];   //arrLi 中匹配存储城市
+            arrB = oBs[i].innerHTML;      //arrB 中存储 数字
+            data[i].push(arrLi);           //因为要一一对应成二维数组，所以要向data[i]中push元素，而不是data.`
+            data[i].push(arrB);
+            //或者data.push(arrLi[i],arrB[i]);   要一一对应才能成二维数组，否则就是一个一维数组了
+
+        }
+        data.sort(function (x, y) {
+            return y[1] - x[1];
+        });
+
+//        data.forEach(function(item){
+//            document.write(item+'</br>');
+//        }); 遍历
+
+        //向 ul 上添加排序结果
+        var res = document.getElementById("resort");
+        for (i = 0; i < data.length; i++) {
+            var row = data[i];
+            var resLi = document.createElement("li");
+            var k = i + 1;
+            for (j = 0; j < row.length; j++) {
+                if (j == 0) {
+                    resLi.innerHTML += "第" + k + "名：" + row[j] + "质量：";
+                }
+                else {
+                    resLi.innerHTML += row[j];
+                }
+
+            }
+//            alert(resLi.innerHTML);
+            res.appendChild(resLi);
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>
